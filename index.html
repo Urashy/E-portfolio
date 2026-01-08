@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Berkan AKIN</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Berkan.dev</div>
+        <ul class="nav-links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle">🌙</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Salut, je suis <span class="highlight">Berkan AKIN</span></h1>
+            <h2>Étudiant en Informatique (BUT)</h2>
+            <p>Passionné par le développement d'applications, l'administration système et la gestion de données.</p>
+            <a href="#competences" class="btn">Voir mon Portfolio</a>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <h2 class="section-title">À propos de moi</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Actuellement étudiant en deuxième année de BUT Informatique à l'Université Savoie Mont Blanc (Annecy). J'ai acquis de l'expérience à travers des projets concrets comme la création d'un clone d'Uber ou d'un distributeur connecté.</p>
+                <br>
+                <p><strong>Mes atouts techniques :</strong> C#, Python, Web (HTML/CSS/JS/PHP), SQL, UML.</p>
+                <p><strong>Langues :</strong> Français (Maternel), Anglais (B2), Turc (C1), Allemand (A2).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences" class="container">
+        <h2 class="section-title">Mes Compétences (Référentiel)</h2>
+        <div class="competence-grid">
+            <a href="competence1.html" class="card">
+                <div class="icon">💻</div>
+                <h3>C1 : Réaliser</h3>
+                <p>Développer des applications informatiques simples et complexes.</p>
+            </a>
+            <a href="competence2.html" class="card">
+                <div class="icon">⚡</div>
+                <h3>C2 : Optimiser</h3>
+                <p>Améliorer les performances et choisir les bons algorithmes.</p>
+            </a>
+            <a href="competence3.html" class="card">
+                <div class="icon">⚙️</div>
+                <h3>C3 : Administrer</h3>
+                <p>Installer et configurer des systèmes et réseaux.</p>
+            </a>
+            <a href="competence4.html" class="card">
+                <div class="icon">🗄️</div>
+                <h3>C4 : Gérer les données</h3>
+                <p>Concevoir et exploiter des bases de données SQL.</p>
+            </a>
+            <a href="competence5.html" class="card">
+                <div class="icon">📅</div>
+                <h3>C5 : Conduire</h3>
+                <p>Gestion de projet, identification des besoins et planification.</p>
+            </a>
+            <a href="competence6.html" class="card">
+                <div class="icon">🤝</div>
+                <h3>C6 : Collaborer</h3>
+                <p>Travailler efficacement au sein d'une équipe informatique.</p>
+            </a>
+        </div>
+    </section>
+
+    <section id="projets" class="container">
+        <h2 class="section-title">Projets Phares</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Distributeur Bluetooth</h3>
+                <p>Projet Arduino/C++ : Création d'un distributeur de bonbons piloté par smartphone.</p>
+                <span class="tag">C++</span> <span class="tag">IoT</span>
+            </div>
+            <div class="project-card">
+                <h3>Simulation Uber</h3>
+                <p>Application complète (Base de données, C#, Laravel) recréant les services Uber.</p>
+                <span class="tag">C#</span> <span class="tag">SQL</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>© 2026 Berkan AKIN - Portfolio Académique</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
