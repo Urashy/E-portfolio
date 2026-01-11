@@ -42,11 +42,29 @@
     </section>
 
     <section id="competences" class="mario-container">
-        <h2 class="section-title" style="color: #fff; text-shadow: 2px 2px #000;">Mes Compétences (Monde 1-1)</h2>
+        <h2 class="section-title" style="color: #fff; text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">🍄 Mes Compétences (Monde 1-1) 🍄</h2>
+
+        <!-- Nuages décoratifs -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
 
         <div class="game-stage">
-            <div id="mario-character"></div>
+            <!-- Mario Pixel Art -->
+            <div id="mario-character">
+                <div class="mario-sprite"></div>
+            </div>
 
+            <!-- Chemin isométrique avec virages -->
+            <div class="isometric-path">
+                <div class="path-segment"></div>
+                <div class="path-segment"></div>
+                <div class="path-segment"></div>
+                <div class="path-segment"></div>
+                <div class="path-segment"></div>
+                <div class="path-segment"></div>
+            </div>
+
+            <!-- Tuyaux positionnés sur le chemin -->
             <div class="pipes-row">
                 <div class="pipe-group" onclick="selectCompetence(this, 'competence1.html')">
                     <div class="pipe-label">C1<br>Réaliser</div>
@@ -97,6 +115,7 @@
                 </div>
             </div>
 
+            <!-- Sol -->
             <div class="ground"></div>
         </div>
     </section>
