@@ -167,3 +167,130 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* --- STYLE MARIO WORLD --- */
+
+.mario-container {
+    background: #5c94fc; /* Ciel bleu Mario */
+    padding: 2rem 0 0 0;
+    overflow: hidden;
+    position: relative;
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
+}
+
+.game-stage {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Le Sol */
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: repeating-linear-gradient( 45deg, #c84c0c, #c84c0c 10px, #a03c09 10px, #a03c09 20px );
+    border-top: 4px solid #000;
+    z-index: 2;
+}
+
+/* Conteneur des tuyaux */
+.pipes-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 60px; /* Hauteur du sol */
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* Style d'un tuyau */
+.pipe-group {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    z-index: 1;
+}
+
+    .pipe-group:hover {
+        transform: scale(1.05);
+    }
+
+.pipe-label {
+    background: #fff;
+    padding: 5px 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.pipe {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pipe-cap {
+    height: 30px;
+    background: linear-gradient(90deg, #00b300 10%, #00cc00 40%, #008000 80%);
+    border: 3px solid #000;
+    width: 70px; /* Plus large que le corps */
+    margin-left: -5px; /* Pour centrer */
+    margin-bottom: -3px; /* Coller au corps */
+    z-index: 2;
+}
+
+.pipe-body {
+    height: 80px; /* Hauteur du tuyau */
+    background: linear-gradient(90deg, #00b300 10%, #00cc00 40%, #008000 80%);
+    border: 3px solid #000;
+    border-top: none;
+}
+
+/* Mario Personnage */
+#mario-character {
+    position: absolute;
+    bottom: 60px; /* Juste sur le sol */
+    left: 20px; /* Position de départ */
+    width: 40px;
+    height: 40px;
+    background-color: red; /* Remplace par url('mario.png') */
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    z-index: 10;
+    transition: left 1s linear, transform 0.5s ease;
+}
+
+/* Animation quand Mario entre dans le tuyau */
+@keyframes pipe-enter {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1);
+    }
+    /* Petit saut avant */
+    100% {
+        transform: translateY(50px) scale(0.8);
+        opacity: 0;
+    }
+    /* Rentre dedans */
+}
+
+.mario-entering {
+    animation: pipe-enter 0.8s forwards;
+}

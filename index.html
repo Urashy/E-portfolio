@@ -41,39 +41,63 @@
         </div>
     </section>
 
-    <section id="competences" class="container">
-        <h2 class="section-title">Mes Compétences (Référentiel)</h2>
-        <div class="competence-grid">
-            <a href="competence1.html" class="card">
-                <div class="icon">💻</div>
-                <h3>C1 : Réaliser</h3>
-                <p>Développer des applications informatiques simples et complexes.</p>
-            </a>
-            <a href="competence2.html" class="card">
-                <div class="icon">⚡</div>
-                <h3>C2 : Optimiser</h3>
-                <p>Améliorer les performances et choisir les bons algorithmes.</p>
-            </a>
-            <a href="competence3.html" class="card">
-                <div class="icon">⚙️</div>
-                <h3>C3 : Administrer</h3>
-                <p>Installer et configurer des systèmes et réseaux.</p>
-            </a>
-            <a href="competence4.html" class="card">
-                <div class="icon">🗄️</div>
-                <h3>C4 : Gérer les données</h3>
-                <p>Concevoir et exploiter des bases de données SQL.</p>
-            </a>
-            <a href="competence5.html" class="card">
-                <div class="icon">📅</div>
-                <h3>C5 : Conduire</h3>
-                <p>Gestion de projet, identification des besoins et planification.</p>
-            </a>
-            <a href="competence6.html" class="card">
-                <div class="icon">🤝</div>
-                <h3>C6 : Collaborer</h3>
-                <p>Travailler efficacement au sein d'une équipe informatique.</p>
-            </a>
+    <section id="competences" class="mario-container">
+        <h2 class="section-title" style="color: #fff; text-shadow: 2px 2px #000;">Mes Compétences (Monde 1-1)</h2>
+
+        <div class="game-stage">
+            <div id="mario-character"></div>
+
+            <div class="pipes-row">
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence1.html')">
+                    <div class="pipe-label">C1<br>Réaliser</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence2.html')">
+                    <div class="pipe-label">C2<br>Optimiser</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence3.html')">
+                    <div class="pipe-label">C3<br>Admin</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence4.html')">
+                    <div class="pipe-label">C4<br>Données</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence5.html')">
+                    <div class="pipe-label">C5<br>Gestion</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+
+                <div class="pipe-group" onclick="selectCompetence(this, 'competence6.html')">
+                    <div class="pipe-label">C6<br>Équipe</div>
+                    <div class="pipe">
+                        <div class="pipe-cap"></div>
+                        <div class="pipe-body"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ground"></div>
         </div>
     </section>
 
