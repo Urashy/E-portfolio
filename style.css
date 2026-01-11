@@ -641,3 +641,152 @@ footer {
         height: 50px !important;
     }
 }
+
+
+/* --- MARIO GAME ENGINE STYLES --- */
+
+#mario-game-section {
+    background: #5c94fc; /* Ciel bleu */
+    padding: 20px 0;
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
+    font-family: 'Courier New', Courier, monospace; /* Police rétro */
+    overflow: hidden;
+}
+
+.game-ui {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 1000px;
+    height: 450px;
+    margin: 0 auto;
+    background-color: #5c94fc;
+    position: relative;
+    overflow: hidden; /* Important pour cacher ce qui est hors champ */
+    border: 4px solid #000;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+#game-world {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* La largeur sera définie par le JS selon la taille du niveau */
+}
+
+/* ÉLÉMENTS DU JEU (Classes génériques) */
+
+.game-entity {
+    position: absolute;
+    box-sizing: border-box;
+}
+
+/* Le Sol */
+.ground-block {
+    background: #c84c0c;
+    border-top: 4px solid #000;
+    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 10px, transparent 10px, transparent 20px);
+}
+
+.ground-grass {
+    background: #00a800;
+    border: 2px solid #000;
+}
+
+/* Les Blocs ? et Briques */
+.brick {
+    background: #b85c38;
+    border: 2px solid #000;
+    box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3);
+}
+
+.mystery-box {
+    background: #fc9838;
+    border: 2px solid #000;
+    animation: pulse 1s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+}
+
+    .mystery-box::after {
+        content: "?";
+    }
+
+@keyframes pulse {
+    0% {
+        background: #fc9838;
+    }
+
+    50% {
+        background: #e88020;
+    }
+
+    100% {
+        background: #fc9838;
+    }
+}
+
+/* Les Tuyaux */
+.pipe-structure {
+    background: linear-gradient(90deg, #00b300 10%, #00d300 40%, #009300 80%);
+    border: 3px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pipe-label {
+    position: absolute;
+    top: -40px;
+    background: white;
+    padding: 2px 8px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Ennemis (Goomba) */
+.enemy {
+    background: #ab5236; /* Marron Goomba */
+    border-radius: 50% 50% 5px 5px;
+    border: 2px solid #000;
+    animation: waddle 0.5s infinite alternate;
+}
+
+@keyframes waddle {
+    from {
+        transform: rotate(-5deg);
+    }
+
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+/* MARIO (Le Joueur) */
+#player {
+    background: red; /* Remplace par url('mario.gif') si tu as l'image */
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    z-index: 100;
+    transition: transform 0.1s; /* Juste pour le retournement gauche/droite */
+}
+    /* Ajoute une classe pour quand il saute si tu veux changer l'image */
+    #player.jumping {
+        transform: scaleY(1.1);
+    }
