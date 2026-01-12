@@ -3,81 +3,1092 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Berkan AKIN</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Planètes Portfolio - Berkan AKIN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #startScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a0033 0%, #000000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            z-index: 1000;
+        }
+
+            #startScreen h1 {
+                font-size: 4rem;
+                background: linear-gradient(45deg, #00f2ff, #ff00ff, #00f2ff);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: glow 3s ease-in-out infinite;
+                margin-bottom: 20px;
+                letter-spacing: 8px;
+            }
+
+            #startScreen p {
+                font-size: 1.8rem;
+                color: #00ffff;
+                margin-bottom: 40px;
+                text-shadow: 0 0 20px #00ffff;
+            }
+
+        .info-box {
+            max-width: 700px;
+            margin: 30px;
+            padding: 35px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #00ff00;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.4);
+        }
+
+            .info-box strong {
+                color: #00ff00;
+                font-size: 1.3rem;
+            }
+
+        #startBtn {
+            padding: 22px 60px;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+            border: 4px solid #fff;
+            border-radius: 50px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            transition: all 0.3s;
+        }
+
+            #startBtn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 80px rgba(0, 255, 0, 1);
+            }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.8));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 60px rgba(255, 0, 255, 1));
+            }
+        }
+
+        #hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            display: none;
+        }
+
+            #hud .label {
+                font-size: 11px;
+                color: #888;
+                text-transform: uppercase;
+            }
+
+            #hud .name {
+                font-size: 22px;
+                font-weight: bold;
+                color: #00ff00;
+                margin-top: 5px;
+            }
+
+            #hud .control {
+                font-size: 13px;
+                color: #00ffff;
+                margin-top: 10px;
+            }
+
+        #pointsList {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            display: none;
+            max-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+            #pointsList h3 {
+                font-size: 16px;
+                color: #00ffff;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                border-bottom: 2px solid #00ffff;
+                padding-bottom: 10px;
+            }
+
+            #pointsList .point-item {
+                padding: 10px;
+                margin-bottom: 8px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+                border-left: 3px solid transparent;
+            }
+
+                #pointsList .point-item:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    transform: translateX(-5px);
+                }
+
+                #pointsList .point-item .point-icon {
+                    font-size: 20px;
+                    margin-right: 10px;
+                }
+
+                #pointsList .point-item .point-name {
+                    font-size: 13px;
+                    font-weight: bold;
+                    display: block;
+                    margin-bottom: 3px;
+                }
+
+                #pointsList .point-item .point-desc {
+                    font-size: 11px;
+                    color: #aaa;
+                }
+
+            #pointsList::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            #pointsList::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+            }
+
+            #pointsList::-webkit-scrollbar-thumb {
+                background: #00ffff;
+                border-radius: 10px;
+            }
+
+                #pointsList::-webkit-scrollbar-thumb:hover {
+                    background: #ff00ff;
+                }
+
+        #switchButtons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .switch-btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #444;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+            .switch-btn.active {
+                border: 3px solid #00ffff;
+            }
+
+            .switch-btn.blue.active {
+                background: linear-gradient(45deg, #00ffff, #0088ff);
+                box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            }
+
+            .switch-btn.red.active {
+                background: linear-gradient(45deg, #ff4500, #ff0000);
+                box-shadow: 0 0 30px rgba(255, 69, 0, 0.8);
+            }
+
+        #tooltip {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 25px 40px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            font-size: 1.3rem;
+            pointer-events: none;
+            z-index: 90;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+            #tooltip .icon {
+                font-size: 3rem;
+                margin-bottom: 10px;
+            }
+
+            #tooltip .title {
+                font-weight: bold;
+                margin-bottom: 8px;
+                font-size: 1.5rem;
+            }
+
+            #tooltip .desc {
+                font-size: 1rem;
+                opacity: 0.9;
+            }
+
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            backdrop-filter: blur(5px);
+        }
+
+        #modalContent {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 40, 0.9));
+            border: 4px solid #00ffff;
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 100px rgba(0, 255, 255, 0.6);
+            animation: modalZoom 0.5s;
+            color: white;
+        }
+
+            #modalContent .icon {
+                font-size: 5rem;
+                margin-bottom: 25px;
+            }
+
+            #modalContent h2 {
+                color: #00ffff;
+                margin-bottom: 20px;
+                font-size: 2.5rem;
+                text-shadow: 0 0 30px #00ffff;
+            }
+
+            #modalContent p {
+                margin-bottom: 20px;
+                line-height: 1.8;
+                font-size: 1.1rem;
+                color: #ccc;
+                text-align: left;
+            }
+
+            #modalContent .detail-section {
+                margin: 20px 0;
+                text-align: left;
+            }
+
+                #modalContent .detail-section h3 {
+                    color: #00ff00;
+                    margin-bottom: 10px;
+                    font-size: 1.3rem;
+                }
+
+                #modalContent .detail-section ul {
+                    list-style: none;
+                    padding-left: 20px;
+                }
+
+                #modalContent .detail-section li {
+                    margin-bottom: 8px;
+                    color: #aaa;
+                }
+
+            #modalContent a {
+                color: #00ffff;
+                text-decoration: none;
+                border-bottom: 1px solid #00ffff;
+                transition: all 0.3s;
+            }
+
+                #modalContent a:hover {
+                    color: #ff00ff;
+                    border-bottom-color: #ff00ff;
+                }
+
+        #closeModal {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: 3px solid #fff;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+            #closeModal:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(0, 255, 255, 1);
+            }
+
+        @keyframes modalZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotate(180deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        #modalContent::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #modalContent::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        #modalContent::-webkit-scrollbar-thumb {
+            background: #00ffff;
+            border-radius: 10px;
+        }
+
+            #modalContent::-webkit-scrollbar-thumb:hover {
+                background: #ff00ff;
+            }
+    </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="logo">Berkan.dev</div>
-        <ul class="nav-links">
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#competences">Compétences</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button id="theme-toggle">🌙</button>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Salut, je suis <span class="highlight">Berkan AKIN</span></h1>
-            <h2>Étudiant en Informatique (BUT)</h2>
-            <p>Passionné par le développement d'applications, l'administration système et la gestion de données.</p>
-            <a href="#competences" class="btn">Voir mon Portfolio</a>
+    <div id="startScreen">
+        <h1>PLANÈTES PORTFOLIO</h1>
+        <p>Berkan AKIN - Étudiant en BUT Informatique</p>
+        <div class="info-box">
+            <strong>🌍 MISSION :</strong><br>
+            Explorez mes deux planètes en 3D !<br>
+            <strong>🔵 Planète Bleue</strong> : Découvrez mes 6 compétences<br>
+            <strong>🔴 Planète Rouge</strong> : Explorez mes 3 projets principaux<br><br>
+            <strong>🎮 CONTRÔLES :</strong><br>
+            Clique + Glisse pour faire tourner<br>
+            Clique sur un point lumineux pour plus d'infos<br>
+            Utilisez les boutons en bas pour changer de planète
         </div>
-    </header>
+        <button id="startBtn">EXPLORER LES PLANÈTES</button>
+    </div>
 
-    <section id="about" class="container">
-        <h2 class="section-title">À propos de moi</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>Actuellement étudiant en deuxième année de BUT Informatique à l'Université Savoie Mont Blanc (Annecy). J'ai acquis de l'expérience à travers des projets concrets comme la création d'un clone d'Uber ou d'un distributeur connecté.</p>
-                <br>
-                <p><strong>Mes atouts techniques :</strong> C#, Python, Web (HTML/CSS/JS/PHP), SQL, UML.</p>
-                <p><strong>Langues :</strong> Français (Maternel), Anglais (B2), Turc (C1), Allemand (A2).</p>
-            </div>
+    <div id="container"></div>
+
+    <div id="hud">
+        <div class="label">PORTFOLIO INTERACTIF</div>
+        <div class="name">BERKAN AKIN</div>
+        <div class="control">🎮 Clique + Glisse pour tourner</div>
+        <div class="control" id="planetInfo">🔵 Planète Compétences</div>
+    </div>
+
+    <div id="pointsList">
+        <h3 id="listTitle">🔵 Compétences</h3>
+        <div id="listContent"></div>
+    </div>
+
+    <div id="switchButtons">
+        <button class="switch-btn blue active" data-planet="blue">🔵 COMPÉTENCES</button>
+        <button class="switch-btn red" data-planet="red">🔴 PROJETS</button>
+    </div>
+
+    <div id="tooltip">
+        <div class="icon"></div>
+        <div class="title"></div>
+        <div class="desc"></div>
+    </div>
+
+    <div id="modal">
+        <div id="modalContent">
+            <div class="icon"></div>
+            <h2></h2>
+            <div id="modalBody"></div>
+            <button id="closeModal">Fermer</button>
         </div>
-    </section>
+    </div>
 
-    <section id="about" class="container">
-    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer;
+        let planets = {};
+        let pointMeshes = { blue: [], red: [] };
+        let activePlanet = 'blue';
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let rotation = { x: 0, y: 0 };
+        let autoRotate = true;
+        let lastInteraction = Date.now();
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
 
-    <section id="mario-game-section">
-        <div class="game-ui">
-            <h2 class="section-title" style="color:white; text-shadow:2px 2px 0 #000; margin:0;">Monde 1-1 : Compétences</h2>
-            <p style="color:white; font-size: 0.9rem;">
-                🎮 <strong>Contrôles :</strong> Flèches / ZQSD pour bouger • ESPACE pour sauter • FLÈCHE BAS pour entrer dans un tuyau
-            </p>
-        </div>
+        const competences = [
+            {
+                name: 'C1: Réaliser',
+                color: 0xff6b6b,
+                icon: '💻',
+                lat: 30,
+                lon: 0,
+                desc: 'Développement d\'applications',
+                details: {
+                    title: 'Réaliser un développement d\'application',
+                    description: 'Conception, développement et déploiement d\'applications informatiques complètes.',
+                    skills: ['C#', 'Python', 'HTML/CSS/JavaScript', 'PHP', 'Laravel'],
+                    projects: ['Clone Uber avec Laravel', 'Distributeur Bluetooth', 'Portfolio Web']
+                }
+            },
+            {
+                name: 'C2: Optimiser',
+                color: 0x4ecdc4,
+                icon: '⚡',
+                lat: -20,
+                lon: 60,
+                desc: 'Optimiser des applications',
+                details: {
+                    title: 'Optimiser des applications informatiques',
+                    description: 'Amélioration des performances et de l\'efficacité des systèmes.',
+                    skills: ['Analyse de performance', 'Refactorisation', 'Optimisation algorithmique'],
+                    projects: ['Optimisation base de données Uber', 'Amélioration du distributeur']
+                }
+            },
+            {
+                name: 'C3: Administrer',
+                color: 0x95e1d3,
+                icon: '🔧',
+                lat: 50,
+                lon: 120,
+                desc: 'Administrer des systèmes',
+                details: {
+                    title: 'Administrer des systèmes informatiques communicants',
+                    description: 'Gestion et maintenance des infrastructures informatiques.',
+                    skills: ['Déploiement serveur', 'Configuration réseau', 'Maintenance système'],
+                    projects: ['Hébergement Uber (51.83.36.122:1206)', 'Configuration Arduino Bluetooth']
+                }
+            },
+            {
+                name: 'C4: Données',
+                color: 0xf38181,
+                icon: '📊',
+                lat: -40,
+                lon: 180,
+                desc: 'Gérer des données',
+                details: {
+                    title: 'Gérer des données de l\'information',
+                    description: 'Conception et gestion de bases de données relationnelles.',
+                    skills: ['SQL', 'UML', 'MCD', 'Conception BDD', 'Migration de données'],
+                    projects: ['Base de données Uber (gestion flotte)', 'Modélisation UML complète']
+                }
+            },
+            {
+                name: 'C5: Projet',
+                color: 0xaa96da,
+                icon: '🎯',
+                lat: 10,
+                lon: 240,
+                desc: 'Conduire un projet',
+                details: {
+                    title: 'Conduire un projet',
+                    description: 'Gestion de projet avec méthodologies agiles et outils de planification.',
+                    skills: ['Diagramme de Gantt', 'Cahier des charges', 'BPMN', 'Gestion d\'équipe'],
+                    projects: ['Projet Distributeur (planification complète)', 'Projet Uber (équipe)']
+                }
+            },
+            {
+                name: 'C6: Équipe',
+                color: 0xfcbad3,
+                icon: '👥',
+                lat: -30,
+                lon: 300,
+                desc: 'Travailler en équipe',
+                details: {
+                    title: 'Travailler dans une équipe informatique',
+                    description: 'Collaboration efficace en équipe avec outils de versioning.',
+                    skills: ['GitHub', 'Travail collaboratif', 'Communication', 'Code review'],
+                    projects: ['Projet Uber (équipe)', 'Contributions open source']
+                }
+            }
+        ];
 
-        <div id="game-container">
-            <div id="game-world">
-            </div>
-        </div>
-    </section>
+        const projets = [
+            {
+                name: 'Distributeur Bluetooth',
+                color: 0xff6b9d,
+                icon: '🤖',
+                lat: 25,
+                lon: 30,
+                desc: 'Distributeur de bonbons connecté',
+                details: {
+                    title: 'Distributeur de bonbons Bluetooth',
+                    description: 'Projet de fin d\'année BAC STI2D (2023) au Lycée Jean Monnet, Annemasse.',
+                    technologies: ['Arduino', 'C++', 'Bluetooth', 'Servomoteur', 'Tinkercad'],
+                    features: [
+                        'Pilotage via smartphone Bluetooth',
+                        'Interface web de contrôle',
+                        'Dosage automatique des bonbons',
+                        'Conception 3D et simulation'
+                    ],
+                    process: [
+                        'Élaboration du cahier des charges',
+                        'Planification avec diagramme de Gantt',
+                        'Tests sur Tinkercad',
+                        'Développement et assemblage',
+                        'Tests et validation'
+                    ]
+                }
+            },
+            {
+                name: 'Clone Uber',
+                color: 0x4ecdc4,
+                icon: '🚗',
+                lat: -30,
+                lon: 90,
+                desc: 'Application de mobilité complète',
+                details: {
+                    title: 'Clone Uber - Plateforme de mobilité',
+                    description: 'Projet universitaire recréant les services Uber (courses, livraison, location vélos).',
+                    technologies: ['Laravel', 'C#', 'PHP', 'SQL', 'UML', 'BPMN'],
+                    features: [
+                        'Gestion de flotte de véhicules',
+                        'Système de courses avec chauffeurs',
+                        'Service de livraison de repas',
+                        'Location de vélos en libre-service',
+                        'Sécurité intégrée dès la conception',
+                        'Base de données optimisée'
+                    ],
+                    links: [
+                        { text: 'Dépôt GitHub', url: 'https://github.com/sftss/Uber' },
+                        { text: 'Démo en ligne', url: 'http://51.83.36.122:1206' }
+                    ],
+                    status: 'En maintenance'
+                }
+            },
+            {
+                name: 'Portfolio Web',
+                color: 0xffd93d,
+                icon: '🌐',
+                lat: -15,
+                lon: 210,
+                desc: 'Site portfolio personnel',
+                details: {
+                    title: 'Portfolio Personnel',
+                    description: 'Site web personnel présentant mes compétences et projets.',
+                    technologies: ['HTML5', 'CSS3', 'JavaScript', 'EmailJS', 'Google reCAPTCHA'],
+                    features: [
+                        'Design responsive',
+                        'Formulaire de contact fonctionnel',
+                        'Filtres de projets dynamiques',
+                        'Thème clair/sombre',
+                        'Support multilingue',
+                        'Intégration Google Maps'
+                    ],
+                    highlight: 'La messagerie en ligne avec EmailJS a été la partie la plus complexe du développement.'
+                }
+            }
+        ];
 
-    <section id="projets" class="container">
-        <h2 class="section-title">Projets Phares</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <h3>Distributeur Bluetooth</h3>
-                <p>Projet Arduino/C++ : Création d'un distributeur de bonbons piloté par smartphone.</p>
-                <span class="tag">C++</span> <span class="tag">IoT</span>
-            </div>
-            <div class="project-card">
-                <h3>Simulation Uber</h3>
-                <p>Application complète (Base de données, C#, Laravel) recréant les services Uber.</p>
-                <span class="tag">C#</span> <span class="tag">SQL</span>
-            </div>
-        </div>
-    </section>
+        function createTexture(type) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
 
-    <footer id="contact">
-        <p>© 2026 Berkan AKIN - Portfolio Académique</p>
-    </footer>
+            if (type === 'blue') {
+                const gradient = ctx.createLinearGradient(0, 0, 0, 512);
+                gradient.addColorStop(0, '#0a2463');
+                gradient.addColorStop(0.5, '#1a3a6b');
+                gradient.addColorStop(1, '#0a2463');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 1024, 512);
 
-    <script src="script.js"></script>
+                ctx.strokeStyle = '#00ffff';
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 50; i++) {
+                    ctx.globalAlpha = Math.random() * 0.3 + 0.1;
+                    ctx.beginPath();
+                    ctx.moveTo(Math.random() * 1024, Math.random() * 512);
+                    ctx.lineTo(Math.random() * 1024, Math.random() * 512);
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = '#00ffff';
+                for (let i = 0; i < 100; i++) {
+                    ctx.globalAlpha = Math.random() * 0.5;
+                    ctx.beginPath();
+                    ctx.arc(Math.random() * 1024, Math.random() * 512, Math.random() * 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            } else {
+                const gradient = ctx.createLinearGradient(0, 0, 0, 512);
+                gradient.addColorStop(0, '#8b0000');
+                gradient.addColorStop(0.5, '#ff4500');
+                gradient.addColorStop(1, '#8b0000');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 1024, 512);
+
+                ctx.fillStyle = '#4a0000';
+                for (let i = 0; i < 30; i++) {
+                    ctx.globalAlpha = Math.random() * 0.4 + 0.2;
+                    ctx.beginPath();
+                    ctx.arc(Math.random() * 1024, Math.random() * 512, Math.random() * 30 + 10, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = '#ffff00';
+                for (let i = 0; i < 80; i++) {
+                    ctx.globalAlpha = Math.random() * 0.6;
+                    ctx.beginPath();
+                    ctx.arc(Math.random() * 1024, Math.random() * 512, Math.random() * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            return texture;
+        }
+
+        function createPlanet(type, data) {
+            const planetGeometry = new THREE.SphereGeometry(5, 64, 64);
+            const texture = createTexture(type);
+            const planetMaterial = new THREE.MeshPhongMaterial({
+                map: texture,
+                emissive: type === 'blue' ? 0x0a1a3a : 0x3a0a0a,
+                shininess: type === 'blue' ? 30 : 20,
+                specular: type === 'blue' ? 0x4488ff : 0xff4400
+            });
+            const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+
+            const atmosphereGeometry = new THREE.SphereGeometry(5.5, 32, 32);
+            const atmosphereMaterial = new THREE.MeshBasicMaterial({
+                color: type === 'blue' ? 0x00ffff : 0xff4500,
+                transparent: true,
+                opacity: 0.15,
+                side: THREE.BackSide
+            });
+            const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+            planet.add(atmosphere);
+
+            const wireframeGeometry = new THREE.SphereGeometry(5.05, 32, 32);
+            const wireframeMaterial = new THREE.MeshBasicMaterial({
+                color: type === 'blue' ? 0x00ffff : 0xff4500,
+                transparent: true,
+                opacity: 0.1,
+                wireframe: true
+            });
+            const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
+            planet.add(wireframe);
+
+            planet.userData = { atmosphere, wireframe };
+
+            data.forEach((item, index) => {
+                const phi = (90 - item.lat) * (Math.PI / 180);
+                const theta = (item.lon + 180) * (Math.PI / 180);
+                const x = 5.2 * Math.sin(phi) * Math.cos(theta);
+                const y = 5.2 * Math.cos(phi);
+                const z = 5.2 * Math.sin(phi) * Math.sin(theta);
+
+                const pointGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+                const pointMaterial = new THREE.MeshBasicMaterial({ color: item.color });
+                const point = new THREE.Mesh(pointGeometry, pointMaterial);
+                point.position.set(x, y, z);
+                point.userData = { ...item, index, planet: type };
+                planet.add(point);
+
+                const haloGeometry = new THREE.SphereGeometry(0.3, 16, 16);
+                const haloMaterial = new THREE.MeshBasicMaterial({
+                    color: item.color,
+                    transparent: true,
+                    opacity: 0.4
+                });
+                const halo = new THREE.Mesh(haloGeometry, haloMaterial);
+                halo.position.copy(point.position);
+                planet.add(halo);
+
+                const ringGeometry = new THREE.TorusGeometry(0.4, 0.02, 16, 32);
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: item.color,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.position.copy(point.position);
+                ring.lookAt(0, 0, 0);
+                planet.add(ring);
+
+                const pointLight = new THREE.PointLight(item.color, 0.5, 3);
+                pointLight.position.copy(point.position);
+                planet.add(pointLight);
+
+                pointMeshes[type].push({ point, halo, ring, light: pointLight, data: item });
+            });
+
+            return planet;
+        }
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 1);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+            const starColors = [];
+            for (let i = 0; i < 3000; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+                starColors.push(Math.random(), Math.random(), Math.random());
+            }
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            starGeometry.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
+            const starMaterial = new THREE.PointsMaterial({
+                size: 2,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+            scene.userData.stars = stars;
+
+            planets.blue = createPlanet('blue', competences);
+            planets.red = createPlanet('red', projets);
+            planets.red.visible = false;
+
+            scene.add(planets.blue);
+            scene.add(planets.red);
+
+            const ambientLight = new THREE.AmbientLight(0x404040, 1);
+            scene.add(ambientLight);
+
+            const pointLight1 = new THREE.PointLight(0xffffff, 1.5, 100);
+            pointLight1.position.set(10, 10, 10);
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0x00ffff, 1, 100);
+            pointLight2.position.set(-10, -10, -10);
+            scene.add(pointLight2);
+
+            camera.position.z = 15;
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.001;
+
+            if (!isDragging && Date.now() - lastInteraction > 2000) {
+                autoRotate = true;
+            }
+
+            if (autoRotate) {
+                rotation.y += 0.002;
+            }
+
+            planets.blue.rotation.x = rotation.x;
+            planets.blue.rotation.y = rotation.y;
+            planets.red.rotation.x = rotation.x;
+            planets.red.rotation.y = rotation.y;
+
+            ['blue', 'red'].forEach(type => {
+                pointMeshes[type].forEach((mesh, index) => {
+                    const scale = 1 + Math.sin(time * 2 + index) * 0.2;
+                    mesh.point.scale.set(scale, scale, scale);
+                    mesh.halo.scale.set(scale * 1.2, scale * 1.2, scale * 1.2);
+                    mesh.halo.material.opacity = 0.3 + Math.sin(time * 2 + index) * 0.2;
+                    mesh.ring.rotation.z = time * 2 + index;
+                });
+            });
+
+            if (planets.blue.userData.atmosphere) {
+                planets.blue.userData.atmosphere.rotation.y += 0.001;
+                planets.blue.userData.atmosphere.rotation.x += 0.0005;
+                planets.blue.userData.wireframe.rotation.y -= 0.0015;
+            }
+
+            if (planets.red.userData.atmosphere) {
+                planets.red.userData.atmosphere.rotation.y += 0.001;
+                planets.red.userData.atmosphere.rotation.x += 0.0005;
+                planets.red.userData.wireframe.rotation.y -= 0.0015;
+            }
+
+            if (scene.userData.stars) {
+                scene.userData.stars.rotation.y += 0.0002;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function switchPlanet(newPlanet) {
+            activePlanet = newPlanet;
+            planets.blue.visible = newPlanet === 'blue';
+            planets.red.visible = newPlanet === 'red';
+
+            document.querySelectorAll('.switch-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-planet="${newPlanet}"]`).classList.add('active');
+
+            document.getElementById('planetInfo').textContent =
+                newPlanet === 'blue' ? '🔵 Planète Compétences' : '🔴 Planète Projets';
+
+            updatePointsList(newPlanet);
+            hideTooltip();
+        }
+
+        function updatePointsList(planet) {
+            const listTitle = document.getElementById('listTitle');
+            const listContent = document.getElementById('listContent');
+
+            listTitle.textContent = planet === 'blue' ? '🔵 Compétences' : '🔴 Projets';
+
+            const data = planet === 'blue' ? competences : projets;
+
+            listContent.innerHTML = data.map((item, index) => {
+                const colorHex = '#' + item.color.toString(16).padStart(6, '0');
+                return `
+                        <div class="point-item" onclick="showModalFromList(${index}, '${planet}')" style="border-left-color: ${colorHex};">
+                            <span class="point-icon">${item.icon}</span>
+                            <span class="point-name" style="color: ${colorHex};">${item.name}</span>
+                            <div class="point-desc">${item.desc}</div>
+                        </div>
+                    `;
+            }).join('');
+        }
+
+        function showModalFromList(index, planet) {
+            const data = planet === 'blue' ? competences[index] : projets[index];
+            showModal(data);
+        }
+
+        function showTooltip(data) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.querySelector('.icon').textContent = data.icon;
+            tooltip.querySelector('.title').textContent = data.name;
+            tooltip.querySelector('.desc').textContent = data.desc;
+            tooltip.style.border = `3px solid #${data.color.toString(16).padStart(6, '0')}`;
+            tooltip.style.boxShadow = `0 0 40px rgba(${(data.color >> 16) & 255}, ${(data.color >> 8) & 255}, ${data.color & 255}, 0.8)`;
+            tooltip.style.display = 'block';
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').style.display = 'none';
+        }
+
+        function showModal(data) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modalContent');
+            const modalBody = document.getElementById('modalBody');
+
+            content.querySelector('.icon').textContent = data.icon;
+            content.querySelector('h2').textContent = data.details.title;
+
+            let html = `<p>${data.details.description}</p>`;
+
+            if (data.details.technologies) {
+                html += `<div class="detail-section">
+                        <h3>🛠️ Technologies utilisées</h3>
+                        <ul>${data.details.technologies.map(tech => `<li>• ${tech}</li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.skills) {
+                html += `<div class="detail-section">
+                        <h3>💡 Compétences</h3>
+                        <ul>${data.details.skills.map(skill => `<li>• ${skill}</li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.features) {
+                html += `<div class="detail-section">
+                        <h3>✨ Fonctionnalités</h3>
+                        <ul>${data.details.features.map(feature => `<li>• ${feature}</li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.process) {
+                html += `<div class="detail-section">
+                        <h3>📋 Processus de développement</h3>
+                        <ul>${data.details.process.map(step => `<li>• ${step}</li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.projects) {
+                html += `<div class="detail-section">
+                        <h3>🎯 Projets associés</h3>
+                        <ul>${data.details.projects.map(proj => `<li>• ${proj}</li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.links) {
+                html += `<div class="detail-section">
+                        <h3>🔗 Liens</h3>
+                        <ul>${data.details.links.map(link => `<li>• <a href="${link.url}" target="_blank">${link.text}</a></li>`).join('')}</ul>
+                    </div>`;
+            }
+
+            if (data.details.status) {
+                html += `<div class="detail-section">
+                        <h3>📊 Statut</h3>
+                        <p style="color: #00ff00;">${data.details.status}</p>
+                    </div>`;
+            }
+
+            if (data.details.highlight) {
+                html += `<div class="detail-section">
+                        <h3>⭐ Point fort</h3>
+                        <p style="color: #ffff00;">${data.details.highlight}</p>
+                    </div>`;
+            }
+
+            modalBody.innerHTML = html;
+            modal.style.display = 'flex';
+        }
+
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        document.getElementById('startBtn').addEventListener('click', () => {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('hud').style.display = 'block';
+            document.getElementById('pointsList').style.display = 'block';
+            document.getElementById('switchButtons').style.display = 'flex';
+            init();
+            updatePointsList('blue');
+        });
+
+        document.getElementById('closeModal').addEventListener('click', hideModal);
+
+        document.querySelectorAll('.switch-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchPlanet(btn.dataset.planet);
+            });
+        });
+
+        window.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            autoRotate = false;
+            lastInteraction = Date.now();
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+
+                rotation.y += deltaX * 0.005;
+                rotation.x += deltaY * 0.005;
+                rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotation.x));
+
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            } else if (scene && camera) {
+                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(pointMeshes[activePlanet].map(p => p.point));
+
+                if (intersects.length > 0) {
+                    showTooltip(intersects[0].object.userData);
+                    document.body.style.cursor = 'pointer';
+                } else {
+                    hideTooltip();
+                    document.body.style.cursor = 'default';
+                }
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!scene || !camera) return;
+
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(pointMeshes[activePlanet].map(p => p.point));
+
+            if (intersects.length > 0) {
+                showModal(intersects[0].object.userData);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        });
+    </script>
 </body>
 </html>
